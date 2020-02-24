@@ -1,4 +1,4 @@
-# API En Marche
+# API ClancheID
 
 C'est une API qui permet à l'application de poignet de porte connécté, ClancheID, de fonctionner
 
