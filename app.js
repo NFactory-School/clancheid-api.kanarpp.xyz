@@ -8,6 +8,7 @@ const dataRoutes = require("./api/routes/data");
 const userRoutes = require('./api/routes/user');
 const logRoutes = require('./api/routes/log');
 const qrcodeRoutes = require('./api/routes/qrcode');
+const fileRoutes = require('./api/routes/file');
 
 mongoose.connect(
     "mongodb+srv://" +
@@ -45,6 +46,7 @@ app.use("/data", dataRoutes);
 app.use("/user", userRoutes);
 app.use("/log", logRoutes);
 app.use("/qrcode", qrcodeRoutes);
+app.use("/file", fileRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found, from: app");

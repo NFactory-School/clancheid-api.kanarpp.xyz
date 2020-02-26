@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/user");
+const path = require('path');
 
 exports.user_signup = (req, res, next) => {
     User.find({email: req.body.email})
@@ -19,6 +19,9 @@ exports.user_signup = (req, res, next) => {
                             error: err
                         });
                     } else {
+                        //console.log(req.file.path);
+                        const name_img = path.parse(req.file.path);
+
                         const user = new User({
                             _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
@@ -27,16 +30,16 @@ exports.user_signup = (req, res, next) => {
                             name: req.body.name,
                             firstname: req.body.firstname,
                             phone: req.body.phone,
-                            qrcode: req.body.pseudo + "can do 2 pushups",
+                            qrcode: req.body.pseudo + "CanDoTwoPushups",
                             role: 0,
-                            faceImg: req.file.path,
+                            file: name_img.name,
                             vector: req.body.vector,
                             created_at: new Date,
                         });
                         user
                             .save()
                             .then(result => {
-                                console.log(result);
+                                //console.log(result);
                                 res.status(201).json({
                                     message: "Register in Progress"
                                 });

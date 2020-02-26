@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
     qrcode: String,
     role: Number,
     vector: String,
-    faceImg: { type: String, required: true },
+    file: { type: String, required: true },
     created_at: Date,
     update_at: Date
 });
