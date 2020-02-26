@@ -33,7 +33,6 @@ exports.user_signup = (req, res, next) => {
                             qrcode: req.body.pseudo + "CanDoTwoPushups",
                             role: 0,
                             file: name_img.name,
-                            vector: req.body.vector,
                             created_at: new Date,
                         });
                         user
@@ -65,6 +64,28 @@ exports.user_login = (req, res, next) => {
                     message: "Auth failed, user doesn't exist"
                 });
             }
+            const role = user[0].role;
+            console.log(role);
+
+            switch (role) {
+                case 0:
+                    return res.status(401).json({
+                        message: 'Your registering is not complete',
+                    });
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    return res.status(401).json({
+                        message: 'You are banned',
+                    });
+                default:
+                    res.status(500).json({
+                        message: 'not allowed login - ',
+                    });
+            }
+
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({
