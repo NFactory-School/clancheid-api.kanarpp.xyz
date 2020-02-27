@@ -11,7 +11,7 @@ const role_admin = require('../middleware/role_admin');
 
 router.patch("/vector/:userId", role_admin, checkAuth, FileController.create_vector);
 
-router.get("/images/:userId", role_admin, checkAuth, FileController.get_img_all);
+router.get("/images/", checkAuth, role_admin, FileController.get_img_all);
 
 router.get("/delete_image/:userId", role_admin, checkAuth, FileController.delete_img_all);
 

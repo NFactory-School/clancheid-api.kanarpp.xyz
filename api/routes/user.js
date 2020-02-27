@@ -12,17 +12,17 @@ router.post("/signup", upload.single('face'), UserController.user_signup);
 
 router.post("/login", UserController.user_login);
 
-router.patch("/update/:userId", role_user, checkAuth, UserController.user_update);
+router.patch("/update/:userId", checkAuth, UserController.user_update);
 
-router.patch("/role/:userId", role_admin, checkAuth, UserController.user_role);
+router.patch("/role/:userId", checkAuth, UserController.user_role);
 
-router.get("/qrcode/:userId", role_user, checkAuth, UserController.user_qrcode);
+router.get("/qrcode/:userId", checkAuth, UserController.user_qrcode);
 
-router.get("/all/:userId", role_admin, checkAuth, UserController.user_get_all);
+router.get("/all/", checkAuth, role_admin, UserController.user_get_all);
 
-router.get("/one/:userId", role_admin, checkAuth, UserController.user_get_one);
+router.get("/one/:userId/", checkAuth, role_admin, UserController.user_get_one);
 
-router.delete("/:userId", role_admin, checkAuth, UserController.user_delete);
+router.delete("/:userId", checkAuth, role_admin, UserController.user_delete);
 
 
 module.exports = router;

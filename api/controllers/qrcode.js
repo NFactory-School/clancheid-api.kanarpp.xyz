@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Qrcode = require("../models/qrcode");
+const path = require("path");
 
 exports.qrct_get_all = (req, res, next) => {
     Qrcode.find()
@@ -39,7 +40,7 @@ exports.qrct_create = (req, res, next) => {
         var result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var charactersLength = characters.length;
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
@@ -67,7 +68,6 @@ exports.qrct_create = (req, res, next) => {
 
                     }
                 }
-                //SEND A MAIL WITH A GENERATE QRCODE
             );
         })
         .catch(err => {

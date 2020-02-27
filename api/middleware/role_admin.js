@@ -3,7 +3,7 @@ const User = require("../models/user");
 module.exports = (req, res, next) => {
     try {
         // find each person with this email
-        const query = User.findOne({'_id': req.params.userId});
+        const query = User.findOne({'_id': req.userData.userId});
 
         // selecting the `email` fields
         query.select('_id role');

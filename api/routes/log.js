@@ -6,9 +6,9 @@ const LogController = require('../controllers/log');
 const checkAuth = require('../middleware/check-auth');
 const role_admin = require('../middleware/role_admin');
 
-router.post("/:userId", role_admin, checkAuth, LogController.log_add);
+router.post("/", checkAuth, role_admin, LogController.log_add);
 
-router.get("/:userId", role_admin, checkAuth, LogController.log_entry);
+router.get("/", checkAuth, role_admin, LogController.log_entry);
 
 router.get("/mail", LogController.mail);
 

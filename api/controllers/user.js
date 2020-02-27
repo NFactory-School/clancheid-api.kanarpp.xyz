@@ -228,7 +228,8 @@ exports.user_get_one = (req, res, next) => {
             console.log("From database", doc);
             if (doc) {
                 res.status(200).json({
-                    data: doc,
+                    //data: doc,
+                    bla: "+1"
                 });
             } else {
                 res.status(404).json({

@@ -6,13 +6,13 @@ const QrcodeController = require('../controllers/qrcode');
 const checkAuth = require('../middleware/check-auth');
 const role_admin = require('../middleware/role_admin');
 
-router.post("/:userId", role_admin, checkAuth, QrcodeController.qrct_create);
+router.post("/", checkAuth, role_admin, QrcodeController.qrct_create);
 
-router.get("/:userId", role_admin, checkAuth, QrcodeController.qrct_get_all);
+router.get("/", checkAuth, role_admin, QrcodeController.qrct_get_all);
 
-router.delete("/delete", role_admin, checkAuth, QrcodeController.qrct_delete_all);
+router.delete("/delete", checkAuth, role_admin, QrcodeController.qrct_delete_all);
 
-router.delete("/delete/:qrcodeId", role_admin, checkAuth, QrcodeController.qrct_delete_one);
+router.delete("/delete/:qrcodeId", checkAuth, role_admin, QrcodeController.qrct_delete_one);
 
 
 module.exports = router;
