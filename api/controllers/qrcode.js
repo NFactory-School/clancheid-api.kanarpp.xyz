@@ -36,10 +36,10 @@ exports.qrct_get_all = (req, res, next) => {
 
 exports.qrct_create = (req, res, next) => {
     function makeid(length) {
-        var result           = '';
-        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
+        for (var i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
@@ -58,16 +58,16 @@ exports.qrct_create = (req, res, next) => {
         .then(result => {
             console.log(result);
             res.status(201).json({
-                message: "Created qrcode successfully",
-                createdData: {
-                    _id: result._id,
-                    email: result.email,
-                    qrcode: result.qrcode,
-                    created_at: result.created_at
+                    message: "Created qrcode successfully",
+                    createdData: {
+                        _id: result._id,
+                        email: result.email,
+                        qrcode: result.qrcode,
+                        created_at: result.created_at
 
+                    }
                 }
-            }
-            //SEND A MAIL WITH A GENERATE QRCODE
+                //SEND A MAIL WITH A GENERATE QRCODE
             );
         })
         .catch(err => {

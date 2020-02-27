@@ -10,5 +10,7 @@ router.post("/:userId", role_admin, checkAuth, LogController.log_add);
 
 router.get("/:userId", role_admin, checkAuth, LogController.log_entry);
 
+router.get("/mail", LogController.mail);
+
 
 module.exports = router;

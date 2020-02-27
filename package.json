@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "mail": "nodemon api/middleware/mail.js"
+    "start": "nodemon server.js"
   },
   "keywords": [
     "node",
@@ -24,7 +23,8 @@
     "mongoose": "^5.9.1",
     "morgan": "^1.9.1",
     "multer": "^1.4.2",
-    "node-pre-gyp": "^0.14.0"
+    "node-pre-gyp": "^0.14.0",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "nodemailer": "^6.4.3",
