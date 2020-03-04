@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const qrcodeSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     email: {
         type: String,
         required: true,
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
     qrcode: String,
+    begin: Date,
+    end: Date,
     created_at: Date,
 });
 

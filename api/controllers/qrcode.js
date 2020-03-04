@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Qrcode = require("../models/qrcode");
+const User = require("../models/user");
 const path = require("path");
 
 exports.qrct_get_all = (req, res, next) => {
@@ -14,6 +15,8 @@ exports.qrct_get_all = (req, res, next) => {
                         _id: result._id,
                         email: result.email,
                         qrcode: result.qrcode,
+                        begin: result.begin,
+                        end: result.end,
                         created_at: result.created_at
 
                     };
@@ -49,9 +52,10 @@ exports.qrct_create = (req, res, next) => {
     const randomstring = makeid(10);
 
     const qrcode = new Qrcode({
-        _id: new mongoose.Types.ObjectId(),
         email: req.body.email,
         qrcode: req.body.email + randomstring,
+        begin: req.begin,
+        end: req.end,
         created_at: new Date
     });
     qrcode
@@ -64,6 +68,8 @@ exports.qrct_create = (req, res, next) => {
                         _id: result._id,
                         email: result.email,
                         qrcode: result.qrcode,
+                        begin: result.begin,
+                        end: result.end,
                         created_at: result.created_at
 
                     }
@@ -109,4 +115,50 @@ exports.qrct_delete_all = (req, res, next) => {
                 error: err
             });
         });
+};
+
+exports.qrct_compare = (req, res, next) => {
+    try {
+        // find each person with this email
+        const query = User.findOne({'qrcode': req.params.qrcode});
+
+        // selecting the fields
+        query.select('qrcode');
+
+        // execute the query at a later time
+        query.exec(function (err, user) {
+            if (err) return handleError(err);
+            if (user != null) {
+                return res.status(200).json({
+                    qrcode: user.qrcode,
+                })
+            }else {
+                // find each person with this email
+                const query2 = Qrcode.findOne({'qrcode': req.params.qrcode});
+
+                // selecting the fields
+                query2.select('qrcode');
+
+                // execute the query at a later time
+                query2.exec(function (err, user) {
+                    if (err) return handleError(err);
+                    if (user != null) {
+                        return res.status(200).json({
+                            qrcode: user.qrcode,
+                        })
+                    } else {
+                        res.status(400).json({
+                            message: 'This QRCode is not recognized',
+                        })
+                    }
+                });
+            }
+        });
+
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'not allowed middleware - ' + error,
+        });
+    }
 };

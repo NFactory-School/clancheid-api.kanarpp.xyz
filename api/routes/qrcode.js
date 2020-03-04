@@ -14,5 +14,8 @@ router.delete("/delete", checkAuth, role_admin, QrcodeController.qrct_delete_all
 
 router.delete("/delete/:qrcodeId", checkAuth, role_admin, QrcodeController.qrct_delete_one);
 
+router.get("/compare/:qrcode", checkAuth, role_admin, QrcodeController.qrct_compare);
+
+
 
 module.exports = router;

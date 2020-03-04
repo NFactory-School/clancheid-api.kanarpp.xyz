@@ -10,7 +10,4 @@ router.post("/", checkAuth, role_admin, LogController.log_add);
 
 router.get("/", checkAuth, role_admin, LogController.log_entry);
 
-router.get("/mail", LogController.mail);
-
-
 module.exports = router;

@@ -23,7 +23,6 @@ exports.user_signup = (req, res, next) => {
                         const name_img = path.parse(req.file.path);
 
                         const user = new User({
-                            _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
                             password: hash,
                             pseudo: req.body.pseudo,
