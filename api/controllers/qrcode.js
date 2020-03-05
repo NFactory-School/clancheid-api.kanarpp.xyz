@@ -130,7 +130,7 @@ exports.qrct_compare = (req, res, next) => {
             if (err) return handleError(err);
             if (user != null) {
                 return res.status(200).json({
-                    qrcode: user.qrcode,
+                    qrcode: 'Authorized',
                 })
             }else {
                 // find each person with this email
@@ -144,11 +144,11 @@ exports.qrct_compare = (req, res, next) => {
                     if (err) return handleError(err);
                     if (user != null) {
                         return res.status(200).json({
-                            qrcode: user.qrcode,
+                            qrcode: 'Authorized',
                         })
                     } else {
                         res.status(400).json({
-                            message: 'This QRCode is not recognized',
+                            message: 'Denied',
                         })
                     }
                 });
