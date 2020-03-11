@@ -83,6 +83,30 @@ app.use((req, res, next) => {
  * /user/signup:
  *  post:
  *      description: Sign-up to the application
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
+ *          -   name: email
+ *              in: path
+ *          -   name: password
+ *              in: path
+ *          -   name: pseudo
+ *              in: path
+ *          -   name: name
+ *              in: path
+ *          -   name: firstname
+ *              in: path
+ *          -   name: phone
+ *              in: path
+ *          -   name: qrcode
+ *              in: path
+ *          -   name: role
+ *              in: path
+ *          -   name: file
+ *              in: path
+ *          -   name: created_at
+ *              in: path
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -90,6 +114,13 @@ app.use((req, res, next) => {
  * /user/login:
  *  post:
  *      description: Connection to the application
+ *      parameters:
+ *          -   name: email
+ *              in: path
+ *              required: true
+ *          -   name: password
+ *              in: path
+ *              required: true
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -99,7 +130,7 @@ app.use((req, res, next) => {
  *      description: Modificate the user on the application
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['user']
  *      responses:
@@ -110,7 +141,7 @@ app.use((req, res, next) => {
  *      description: Modificate the role of userId
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['user']
  *      responses:
@@ -121,7 +152,7 @@ app.use((req, res, next) => {
  *      description: Generate the QR code of userId
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['user']
  *      responses:
@@ -130,6 +161,30 @@ app.use((req, res, next) => {
  * /user/all/:
  *  get:
  *      description: Show all users
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
+ *          -   name: email
+ *              in: path
+ *          -   name: pseudo
+ *              in: path
+ *          -   name: name
+ *              in: path
+ *          -   name: firstname
+ *              in: path
+ *          -   name: phone
+ *              in: path
+ *          -   name: qrcode
+ *              in: path
+ *          -   name: role
+ *              in: path
+ *          -   name: vector
+ *              in: path
+ *          -   name: created_at
+ *              in: path
+ *          -   name: updated_at
+ *              in: path
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -139,7 +194,7 @@ app.use((req, res, next) => {
  *      description: Show the userId
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['user']
  *      responses:
@@ -150,7 +205,7 @@ app.use((req, res, next) => {
  *      description: Delete the userId
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['user']
  *      responses:
@@ -164,6 +219,15 @@ app.use("/user", userRoutes);
  * /log:
  *  get:
  *      description: The request of the log
+ *      parameters:
+ *          -   name: _id
+ *              in: path
+ *          -   name: pseudo
+ *              in: path
+ *          -   name: method
+ *              in: path
+ *          -   name: created_at
+ *              in: path
  *      tags: ['log']
  *      responses:
  *          '200':
@@ -171,6 +235,15 @@ app.use("/user", userRoutes);
  * /log/:
  *  post:
  *      description: Entry by a log
+ *      parameters:
+ *          -   name: _id
+ *              in: path
+ *          -   name: pseudo
+ *              in: path
+ *          -   name: method
+ *              in: path
+ *          -   name: created_at
+ *              in: path
  *      tags: ['log']
  *      responses:
  *          '200':
@@ -183,6 +256,15 @@ app.use("/log", logRoutes);
  * /qrcode:
  *  get:
  *      description: Show all the QR code
+ *      parameters:
+ *          -   name: mail
+ *              in: path
+ *          -   name: qrcode
+ *              in: path
+ *          -   name: _id
+ *              in: path
+ *          -   name: created_at
+ *              in: path
  *      tags: ['qrcode']
  *      responses:
  *          '200':
@@ -190,6 +272,17 @@ app.use("/log", logRoutes);
  * /qrcode/:
  *  post:
  *      description: Create a QR code
+ *      parameters:
+ *          -   name: email
+ *              in: path
+ *          -   name: qrcode
+ *              in: path
+ *          -   name: begin
+ *              in: path
+ *          -   name: end
+ *              in: path
+ *          -   name: created_at
+ *              in: path
  *      tags: ['qrcode']
  *      responses:
  *          '200':
@@ -206,7 +299,7 @@ app.use("/log", logRoutes);
  *      description: Delete the QR codeId
  *      parameters:
  *          -   name: qrcodeId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['qrcode']
  *      responses:
@@ -217,7 +310,7 @@ app.use("/log", logRoutes);
  *      description: Compare the QR code with bdd
  *      parameters:
  *          -   name: qrcode
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['qrcode']
  *      responses:
@@ -233,7 +326,7 @@ app.use("/qrcode", qrcodeRoutes);
  *      description: Create a vector by userID
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
  *      tags: ['file']
  *      responses:
@@ -242,6 +335,9 @@ app.use("/qrcode", qrcodeRoutes);
  * /file/images/:
  *  get:
  *      description: Display all images
+ *      parameters:
+ *          -   name: file
+ *              in: path
  *      tags: ['file']
  *      responses:
  *          '200':
@@ -251,8 +347,10 @@ app.use("/qrcode", qrcodeRoutes);
  *      description: Delete the image of userID
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
+ *          -   name: file
+ *              in: path
  *      tags: ['file']
  *      responses:
  *          '200':
@@ -262,8 +360,10 @@ app.use("/qrcode", qrcodeRoutes);
  *      description: Display the image of userID
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
+ *          -   name: file
+ *              in: path
  *      tags: ['file']
  *      responses:
  *          '200':
@@ -273,8 +373,10 @@ app.use("/qrcode", qrcodeRoutes);
  *      description: Read the music of userID
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
+ *          -   name: file
+ *              in: path
  *      tags: ['file']
  *      responses:
  *          '200':
@@ -284,12 +386,10 @@ app.use("/qrcode", qrcodeRoutes);
  *      description: Upload sound of userID
  *      parameters:
  *          -   name: userId
- *              in: path
+ *              in: query
  *              required: true
- *      parameters:
- *          -   name: userId
+ *          -   name: file
  *              in: path
- *              required: true
  *      tags: ['file']
  *      responses:
  *          '200':
