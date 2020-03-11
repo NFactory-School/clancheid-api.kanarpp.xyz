@@ -97,6 +97,10 @@ app.use((req, res, next) => {
  * /user/update/:userId:
  *  patch:
  *      description: Modificate the user on the application
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -104,6 +108,10 @@ app.use((req, res, next) => {
  * /user/role/:userId:
  *  patch:
  *      description: Modificate the role of userId
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -111,6 +119,10 @@ app.use((req, res, next) => {
  * /user/qrcode/:userId:
  *  get:
  *      description: Generate the QR code of userId
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -125,6 +137,10 @@ app.use((req, res, next) => {
  * /user/one/:userId/:
  *  get:
  *      description: Show the userId
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -132,6 +148,10 @@ app.use((req, res, next) => {
  *  /user/:userId:
  *  delete:
  *      description: Delete the userId
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['user']
  *      responses:
  *          '200':
@@ -184,6 +204,10 @@ app.use("/log", logRoutes);
  * /qrcode/delete/:qrcodeId:
  *  delete:
  *      description: Delete the QR codeId
+ *      parameters:
+ *          -   name: qrcodeId
+ *              in: path
+ *              required: true
  *      tags: ['qrcode']
  *      responses:
  *          '200':
@@ -191,6 +215,10 @@ app.use("/log", logRoutes);
  * /qrcode/compare/:qrcode:
  *  get:
  *      description: Compare the QR code with bdd
+ *      parameters:
+ *          -   name: qrcode
+ *              in: path
+ *              required: true
  *      tags: ['qrcode']
  *      responses:
  *          '200':
@@ -202,35 +230,66 @@ app.use("/qrcode", qrcodeRoutes);
  * @swagger
  *  /file/vector/:userId:
  *  patch:
- *      description: Show all the QR code
+ *      description: Create a vector by userID
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['file']
  *      responses:
  *          '200':
  *              description: A successful response
  * /file/images/:
  *  get:
- *      description: Create a QR code
+ *      description: Display all images
  *      tags: ['file']
  *      responses:
  *          '200':
  *              description: A successful response
  * /file/delete_image/:userId:
  *  delete:
- *      description: Delete all QR code
+ *      description: Delete the image of userID
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['file']
  *      responses:
  *          '200':
  *              description: A successful response
  * /file/image/:userId:
  *  get:
- *      description: Delete the QR codeId
+ *      description: Display the image of userID
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['file']
  *      responses:
  *          '200':
  *              description: A successful response
  * /file/sound/:userId:
  *  get:
- *      description: Compare the QR code with bdd
+ *      description: Read the music of userID
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
+ *      tags: ['file']
+ *      responses:
+ *          '200':
+ *              description: A successful response
+ *  /file/sound/:userId:
+ *  post:
+ *      description: Upload sound of userID
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
+ *      parameters:
+ *          -   name: userId
+ *              in: path
+ *              required: true
  *      tags: ['file']
  *      responses:
  *          '200':
