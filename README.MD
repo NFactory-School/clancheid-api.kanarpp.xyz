@@ -1,6 +1,6 @@
 # API ClancheID
 
-C'est une API qui permet à l'application de poignet de porte connécté, ClancheID, de fonctionner
+C'est une API qui permet à l'application de poignée de porte connectée, ClancheID, de fonctionner
 
 ## Installation
 
@@ -16,7 +16,7 @@ Update dépendance
 npm install
 ```
 
-Ajouter le fichier de conf
+Ajouter le fichier de configuration
 
 ## Usage
 
